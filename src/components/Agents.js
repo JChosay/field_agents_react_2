@@ -160,13 +160,13 @@ function Agents() {
     };
 
     const handleDelete = async (firstName, middleName, lastName, dob, heightInInches) => {
-       
+
         console.log("Delete Function");
 
         let agentToDelete = agents.find((agent => agent.firstName === firstName),
             (agent => agent.lastName === lastName), (agent => agent.middleName === middleName),
             (agent => agent.dob === dob), (agent => agent.heightInInches === heightInInches));
-        
+
         const agentId = agentToDelete.agentId;
 
         try {
@@ -221,13 +221,13 @@ function Agents() {
                 handleDeleteAgent={handleDeleteAgent}
             />
 
-            {toggleForm === 0 && editAgentId === 0 && deleteAgentId === 0? (
+            {toggleForm === 0 && editAgentId === 0 && deleteAgentId === 0 ? (
                 <button className="btn btn-warning ml-2" onClick={formToggle}>
                     Add an Agent
                 </button>
             ) : (null)}
 
-            {editAgentId === 0 && toggleForm === 1 && deleteAgentId===0 ? (
+            {editAgentId === 0 && toggleForm === 1 && deleteAgentId === 0 ? (
                 <AddAgentForm
                     handleAddSubmit={handleAddSubmit}
                     errors={errors}
@@ -240,7 +240,7 @@ function Agents() {
                 />
             ) : (null)}
 
-            {editAgentId !== 0 && toggleForm === 1 && deleteAgentId===0? (
+            {editAgentId !== 0 && toggleForm === 1 && deleteAgentId === 0 ? (
                 <EditAgentForm
                     handleUpdateSubmit={handleUpdateSubmit}
                     firstName={firstName}
