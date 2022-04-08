@@ -51,46 +51,46 @@ const Login = () => {
                 }
             })
             .catch(error => console.log(error));
-
-        return (
-            <>
-                <h2 id="subformHeader">Log In</h2>
-                <Errors errors={errors} />
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username">Username:</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={user.username}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            className="form-control"
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={user.password}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="mt-5">
-                        <button className="btn btn-success" type="submit">
-                            <i className="bi bi-plus-circle-fill"></i> Login
-                        </button>
-                        <Link to="/" className="btn btn-warning ml-2">
-                            <i className="bi bi-x"></i> Cancel
-                        </Link>
-                    </div>
-                </form>
-            </>
-        );
     }
-}
+    return (
+        <>
+            <h2 id="subformHeader">Log In</h2>
+            <Errors errors={errors} />
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="username">Username:</label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={user.username}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        className="form-control"
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={user.password}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div className="mt-5">
+                    <button className="btn btn-success" type="submit">
+                        <i className="bi bi-plus-circle-fill"></i> Login
+                    </button>
+                    <Link to="/" className="btn btn-warning ml-2">
+                        <i className="bi bi-x"></i> Cancel
+                    </Link>
+                </div>
+            </form>
+        </>
+    );
+};
+
 
 export default Login;
