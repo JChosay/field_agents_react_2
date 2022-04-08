@@ -87,12 +87,12 @@ function App() {
           <Route path="/agents/add">
             {auth.user ? <AddAgentForm /> : <Redirect to="/login" />}
           </Route>
-          
-          <Route path="/agents/edit/:id">
+
+          <Route path="/agent/edit/:id">
             {auth.user ? <EditAgentForm /> : <Redirect to="/login" />}
           </Route>
-          
-          <Route path="/agents/delete/:id">
+
+          <Route path="/agent/delete/:id">
             {auth.user ? <DeleteAgentForm /> : <Redirect to="/login" />}
           </Route>
 

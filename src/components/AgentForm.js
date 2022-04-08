@@ -66,14 +66,14 @@ function AgentForm() {
                                 <td>
                                     <div className="float-right" id="buttonGroup">
                                         <Link
-                                            to={`/agents/edit/${agent.id}`}
+                                            to={`/agent/edit/${agent.agentId}`}
                                             className="btn btn-success btn-sm"
                                             id="leftButton"
                                         >
                                             Edit
                                         </Link>
                                         <Link
-                                            to={`/agents/delete/${agent.id}`}
+                                            to={`/agent/delete/${agent.agentId}`}
                                             className="btn btn-danger btn-sm"
                                         >
                                             Delete
@@ -90,6 +90,13 @@ function AgentForm() {
                 </tbody>
 
             </table>
+            <Link
+                to={"/agents/add"}
+                className="btn btn-warning"
+                id="leftButton"
+            >
+                Add Agent
+            </Link>
 
         </div>
 
