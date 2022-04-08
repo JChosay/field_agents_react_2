@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export const AgentTable = (props) => (
     <table className="table" id="agentTable">
+        
         <thead>
             <tr>
                 <th>ID</th>
@@ -11,6 +12,7 @@ export const AgentTable = (props) => (
                 <th>Actions</th>
             </tr>
         </thead>
+
         <tbody>
             {props.agents.length > 0 ? (
                 props.agents.map((agent) => (
@@ -44,5 +46,6 @@ export const AgentTable = (props) => (
                 </tr>
             )}
         </tbody>
+        
     </table>
 )

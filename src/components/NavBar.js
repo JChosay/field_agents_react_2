@@ -28,8 +28,8 @@ const NavBar = () => {
                 )}
             </ul>
             {auth.user && (
-                <div>
-                    <p>Hello, {auth.user.username}!</p>
+                <div id="loggedInLabel">
+                    <p id="loggedInMessage">Hello, {auth.user.username}!</p>
                     <button onClick={() => auth.logout()} className="btn btn-primary">Logout</button>
                 </div>
             )}

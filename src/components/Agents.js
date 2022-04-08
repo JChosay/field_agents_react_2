@@ -161,8 +161,6 @@ function Agents() {
 
     const handleDelete = async (firstName, middleName, lastName, dob, heightInInches) => {
 
-        console.log("Delete Function");
-
         let agentToDelete = agents.find((agent => agent.firstName === firstName),
             (agent => agent.lastName === lastName), (agent => agent.middleName === middleName),
             (agent => agent.dob === dob), (agent => agent.heightInInches === heightInInches));

@@ -27,7 +27,7 @@
 
 #nav {
   list-style-type: none;
-  margin: 10;
+  /* margin: 10; */
   padding: 0;
   color: red;
 
@@ -43,4 +43,17 @@
 #subformHeader {
   font-family: 'Anton', sans-serif;
   margin-left: .5rem;
+}
+
+#loggedInLabel {
+  margin-left: .5rem;
+  margin-bottom: 1rem;
+}
+
+#loggedInMessage {
+  font-family: 'Anton', sans-serif;
+}
+
+#root {
+  margin-left: 1rem;
 }
