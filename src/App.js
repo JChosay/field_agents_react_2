@@ -4,11 +4,15 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Login from "./components/Login";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
     <Router>
+
       <Header />
+      
       <Switch>
 
         <Route exact path="/">
@@ -21,6 +25,18 @@ function App() {
 
         <Route path="/contact">
           <Contact />
+        </Route>
+
+        <Route path="/agents">
+          <Agents />
+        </Route>
+
+        <Route path="/login">
+          <Login />
+        </Route>
+        
+        <Route path="*">
+          <NotFound />
         </Route>
 
       </Switch>
