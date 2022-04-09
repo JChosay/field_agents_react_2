@@ -22,9 +22,14 @@ const NavBar = () => {
                     <Link to="/agents">Agents</Link>
                 </li>
                 {!auth.user && (
-                    <li id="navList">
-                        <Link to="/login">Login</Link>
-                    </li>
+                    <>
+                        <li id="navList">
+                            <Link to="/login">Login</Link>
+                        </li>
+                        <li id="navList">
+                            <Link to="/register">Register</Link>
+                        </li>
+                    </>
                 )}
             </ul>
             {auth.user && (

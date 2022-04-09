@@ -13,6 +13,7 @@ import AddAgent from "./components/AddAgent";
 import EditAgent from "./components/EditAgent";
 import jwt_decode from 'jwt-decode';
 import Agents from "./components/Agents";
+import Register from "./components/Register";
 
 const TOKEN_KEY = "user-api-token";
 
@@ -94,6 +95,10 @@ function App() {
 
           <Route path="/login">
             <Login />
+          </Route>
+
+          <Route path="/register">
+            <Register />
           </Route>
 
           <Route path="*">
