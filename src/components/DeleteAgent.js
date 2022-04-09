@@ -86,6 +86,8 @@ function DeleteAgent(props) {
     };
 
     return (
+        <>
+        <h2 id="subformHeader">Delete Agent</h2>
         <form onSubmit={handleSubmit} className="form-inline mx-2 my-4">
             <input
                 type="text"
@@ -136,6 +138,7 @@ function DeleteAgent(props) {
             </Link>
 
         </form>
+        </>
     );
 
 }

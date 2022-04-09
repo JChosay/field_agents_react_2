@@ -107,6 +107,8 @@ function EditAgent(props) {
     };
 
     return (
+        <>
+        <h2 id="subformHeader">Edit Agent</h2>
         <form onSubmit={handleSubmit} className="form-inline mx-2 my-4">
             <Errors errors={errors} />
             <input
@@ -167,6 +169,7 @@ function EditAgent(props) {
                 Cancel
             </button> */}
         </form>
+        </>
     );
 
 }

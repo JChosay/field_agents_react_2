@@ -39,7 +39,6 @@ function App() {
         return roles.includes(role);
       }
     }
-    console.log(user);
 
     setUser(user);
 

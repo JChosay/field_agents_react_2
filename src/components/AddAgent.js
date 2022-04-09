@@ -75,6 +75,8 @@ const AddAgent = (props) => {
     }
 
     return (
+        <>
+        <h2 id="subformHeader">Add Agent</h2>
         <form onSubmit={handleSubmit} className="form-inline mx-2 my-4">
             <Errors errors={errors} />
             <input
@@ -131,6 +133,7 @@ const AddAgent = (props) => {
             </Link>
 
         </form>
+        </>
     );
 }
 
