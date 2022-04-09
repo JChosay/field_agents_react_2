@@ -88,9 +88,6 @@ function EditAgent(props) {
 
         fetch(`http://localhost:8080/api/agent/${updatedAgent.agentId}`, init)
             .then(response => {
-                console.log(updatedAgent);
-                console.log(response);
-                console.log(init);
                 if (response.status === 204) {
                     return null;
                 } else if (response.status === 400) {

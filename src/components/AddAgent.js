@@ -65,7 +65,7 @@ const AddAgent = (props) => {
                 return Promise.reject("Server Error: Something unexpected went wrong.");
             })
             .then(data => {
-                if (data.id) {
+                if (data.agentId) {
                     history.push("/agents");
                 } else {
                     setErrors(data);
