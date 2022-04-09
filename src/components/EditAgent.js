@@ -170,4 +170,4 @@ function EditAgent(props) {
 
 }
 
-export default EditAgent
+export default EditAgent;

@@ -7,7 +7,7 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import { useState } from "react";
-import { DeleteAgentForm } from "./components/DeleteAgentForm";
+import DeleteAgent from "./components/DeleteAgent";
 import { Redirect } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import AddAgent from "./components/AddAgent";
@@ -22,12 +22,10 @@ function App() {
   const [user, setUser] = useState(null);
 
   const login = (token) => {
-    console.log(token);
 
     localStorage.setItem(TOKEN_KEY, token);
 
     const tokenObj = jwt_decode(token);
-    console.log(tokenObj);
 
     const { sub: username, authorities: roleString } = tokenObj;
 
@@ -93,7 +91,7 @@ function App() {
           </Route>
 
           <Route path="/agent/delete/:id">
-            {auth.user ? <DeleteAgentForm /> : <Redirect to="/login" />}
+            {auth.user ? <DeleteAgent /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/login">
