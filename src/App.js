@@ -11,7 +11,7 @@ import { DeleteAgentForm } from "./components/DeleteAgentForm";
 import { Redirect } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import AddAgent from "./components/AddAgent";
-import { EditAgentForm } from "./components/EditAgentForm";
+import EditAgent from "./components/EditAgent";
 import jwt_decode from 'jwt-decode';
 import AgentForm from "./components/AgentForm";
 
@@ -89,7 +89,7 @@ function App() {
           </Route>
 
           <Route path="/agent/edit/:id">
-            {auth.user ? <EditAgentForm /> : <Redirect to="/login" />}
+            {auth.user ? <EditAgent /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/agent/delete/:id">

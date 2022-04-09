@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import AuthContext from "../AuthContext";
-import Errors from "./Errors";
+import { useState, useEffect, useContext } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import AuthContext from '../AuthContext';
 
+import Errors from './Errors';
 
-const AddAgent = (props) => {
-
+function EditAgent(props) {
     const [firstName, setFirstName] = useState(props.firstName);
     const [lastName, setLastName] = useState(props.lastName);
     const [middleName, setMiddleName] = useState(props.middleName);
@@ -15,6 +13,8 @@ const AddAgent = (props) => {
     const [errors, setErrors] = useState([]);
 
     const auth = useContext(AuthContext);
+
+    const { id } = useParams();
     const history = useHistory();
 
     const handleInputChangeFn = (event) => {
@@ -37,42 +37,77 @@ const AddAgent = (props) => {
         setHeightInInches(event.target.value);
     };
 
+    useEffect(() => {
+
+        const init = {
+            headers: {
+                Authorization: `Bearer ${auth.user.token}`,
+            }
+        };
+
+        fetch(`http://localhost:8080/api/agent/${id}`, init)
+            .then(response => {
+                if (response.status === 404) {
+                    return Promise.reject(`Received 404 Not Found for Agent ID# ${id}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                setFirstName(data.firstName);
+                setMiddleName(data.middleName);
+                setLastName(data.lastName);
+                setDob(data.dob);
+                setHeightInInches(data.heightInInches);
+                
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, [id, auth.user.token]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const newAgent = {
+        const updatedAgent = {
+            agentId: id,
             firstName,
             middleName,
             lastName,
             dob,
             heightInInches
-        }
-
-        const init = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${auth.user.token}`,
-            },
-            body: JSON.stringify(newAgent),
         };
 
-        fetch("http://localhost:8080/api/agent", init)
+        const init = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${auth.user.token}`,
+            },
+            body: JSON.stringify(updatedAgent)
+        };
+
+        fetch(`http://localhost:8080/api/agent/${updatedAgent.agentId}`, init)
             .then(response => {
-                if (response.status === 201 || response.status === 400) {
+                console.log(updatedAgent);
+                console.log(response);
+                console.log(init);
+                if (response.status === 204) {
+                    return null;
+                } else if (response.status === 400) {
                     return response.json();
                 }
-                return Promise.reject("Server Error: Something unexpected went wrong.");
+                return Promise.reject('Something unexpected went wrong');
             })
             .then(data => {
-                if (data.id) {
-                    history.push("/agents");
+                if (!data) {
+                    history.push('/agents');
                 } else {
+
                     setErrors(data);
                 }
             })
             .catch(error => console.log(error));
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit} className="form-inline mx-2 my-4">
@@ -121,16 +156,21 @@ const AddAgent = (props) => {
                 value={heightInInches}
                 onChange={handleInputChangeHeight}
             />
-            <button type="submit" className="btn btn-success ml-2">
-                Add Agent
+            <button
+                type="submit"
+                className="btn btn-success ml-2"
+            >
+                Update Agent
             </button>
-
-            <Link to="/agents" id="cancelButton" className="btn btn-warning ml-2">
+            <Link to="/agents" className="btn btn-warning ml-2" id="cancelButton">
                 Cancel
             </Link>
-
+            {/* <button className="btn btn-warning ml-2" id="cancelButton" onClick={props.handleUpdateCancel}>
+                Cancel
+            </button> */}
         </form>
     );
+
 }
 
-export default AddAgent;
+export default EditAgent
