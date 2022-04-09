@@ -91,7 +91,7 @@ function AgentForm() {
 
             </table>
             <Link
-                to={"/agents/add"}
+                to={"/agent/add"}
                 className="btn btn-warning"
                 id="leftButton"
             >
@@ -99,11 +99,7 @@ function AgentForm() {
             </Link>
 
         </div>
-
-
-
     )
-
 }
 
 export default AgentForm;
