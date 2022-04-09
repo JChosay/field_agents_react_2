@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import AuthContext from '../AuthContext';
 
-import Errors from './Errors';
+import { Errors } from './Errors';
 
 function EditAgent(props) {
     const [firstName, setFirstName] = useState(props.firstName);
@@ -108,6 +108,7 @@ function EditAgent(props) {
 
     return (
         <form onSubmit={handleSubmit} className="form-inline mx-2 my-4">
+            <Errors errors={errors} />
             <input
                 type="text"
                 className="form-control col-1"

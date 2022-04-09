@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../AuthContext";
-import Errors from "./Errors";
+import { Errors } from "./Errors";
 
 
 const AddAgent = (props) => {
@@ -76,6 +76,7 @@ const AddAgent = (props) => {
 
     return (
         <form onSubmit={handleSubmit} className="form-inline mx-2 my-4">
+            <Errors errors={errors} />
             <input
                 type="text"
                 className="form-control col-1"
