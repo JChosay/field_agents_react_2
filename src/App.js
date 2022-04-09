@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Agents from "./components/Agents";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -13,7 +12,7 @@ import AuthContext from "./AuthContext";
 import AddAgent from "./components/AddAgent";
 import EditAgent from "./components/EditAgent";
 import jwt_decode from 'jwt-decode';
-import AgentForm from "./components/AgentForm";
+import Agents from "./components/Agents";
 
 const TOKEN_KEY = "user-api-token";
 
@@ -78,7 +77,7 @@ function App() {
           </Route>
 
           <Route path="/agents">
-            {auth.user ? <AgentForm /> : <Redirect to="/login" />}
+            {auth.user ? <Agents /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/agent/add">
