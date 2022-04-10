@@ -83,7 +83,7 @@ const Login = () => {
                     <button className="btn btn-success" type="submit">
                         <i className="bi bi-plus-circle-fill"></i> Login
                     </button>
-                    <Link to="/" className="btn btn-warning ml-2">
+                    <Link to="/" className="btn btn-warning ml-2" id="cancelButton">
                         <i className="bi bi-x"></i> Cancel
                     </Link>
                 </div>

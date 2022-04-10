@@ -32,12 +32,15 @@ const Register = () => {
             return;
         }
 
-        const newUserName = user.username;
-        const newPassword = user.password;
+        const username = user.username;
+        const password = user.password;
         const newUser = {
-            newUserName,
-            newPassword,
+            username,
+            password,
         };
+
+        console.log(newUser);
+
         const init = {
             method: "POST",
             headers: {
@@ -45,8 +48,9 @@ const Register = () => {
             },
             body: JSON.stringify(newUser),
         };
-
-        fetch("http://localhost:8080/api/create_account", init)
+        
+        console.log(init);
+        fetch("http://localhost:8080/api/createAccount", init)
             .then((response) => {
                 if (response.status === 201 || response.status === 400) {
                     return response.json();
@@ -56,7 +60,7 @@ const Register = () => {
             .then((data) => {
                 if (data.id) {
                     const init = {
-                        method: "POST", // GET by default
+                        method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
@@ -94,6 +98,7 @@ const Register = () => {
             <h2 id="subformHeader" className="my-4">Register</h2>
             <Errors errors={errors} />
             <form onSubmit={handleSubmit}>
+
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input
@@ -105,6 +110,7 @@ const Register = () => {
                         onChange={handleInputChange}
                     />
                 </div>
+
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
                     <input
@@ -116,6 +122,7 @@ const Register = () => {
                         onChange={handleInputChange}
                     />
                 </div>
+
                 <div className="form-group">
                     <label htmlFor="confirmPassword">Confirm Password:</label>
                     <input
@@ -127,14 +134,16 @@ const Register = () => {
                         onChange={handleInputChange}
                     />
                 </div>
+
                 <div className="mt-5">
                     <button className="btn btn-success" type="submit">
                         <i className="bi bi-plus-circle-fill"></i> Register
                     </button>
-                    <Link to="/" className="btn btn-warning ml-2">
+                    <Link to="/" className="btn btn-warning ml-2" id="cancelButton">
                         <i className="bi bi-x"></i> Cancel
                     </Link>
                 </div>
+
             </form>
         </>
     );
