@@ -24,3 +24,36 @@
 #cancelButton {
   margin-left: .5rem;
 }
+
+#nav {
+  list-style-type: none;
+  /* margin: 10; */
+  padding: 0;
+  color: red;
+
+}
+
+#navList{
+  display: inline;
+  padding: 8px;
+  font-family: 'Anton', sans-serif;
+  
+}
+
+#subformHeader {
+  font-family: 'Anton', sans-serif;
+  margin-left: .5rem;
+}
+
+#loggedInLabel {
+  margin-left: .5rem;
+  margin-bottom: 1rem;
+}
+
+#loggedInMessage {
+  font-family: 'Anton', sans-serif;
+}
+
+#root {
+  margin-left: 1rem;
+}

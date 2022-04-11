@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import AuthContext from "../AuthContext";
+import { Errors } from "./Errors";
 
-export const AddAgentForm = (props) => {
+
+const AddAgent = (props) => {
+
     const [firstName, setFirstName] = useState(props.firstName);
     const [lastName, setLastName] = useState(props.lastName);
     const [middleName, setMiddleName] = useState(props.middleName);
     const [dob, setDob] = useState(props.dob);
     const [heightInInches, setHeightInInches] = useState(props.heightInInches);
+    const [errors, setErrors] = useState([]);
+
+    const auth = useContext(AuthContext);
+    const history = useHistory();
 
     const handleInputChangeFn = (event) => {
         setFirstName(event.target.value);
@@ -29,11 +39,46 @@ export const AddAgentForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.handleAddSubmit(firstName, middleName, lastName, dob, heightInInches);
-    };
+
+        const newAgent = {
+            firstName,
+            middleName,
+            lastName,
+            dob,
+            heightInInches
+        }
+
+        const init = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${auth.user.token}`,
+            },
+            body: JSON.stringify(newAgent),
+        };
+
+        fetch("http://localhost:8080/api/agent", init)
+            .then(response => {
+                if (response.status === 201 || response.status === 400) {
+                    return response.json();
+                }
+                return Promise.reject("Server Error: Something unexpected went wrong.");
+            })
+            .then(data => {
+                if (data.agentId) {
+                    history.push("/agents");
+                } else {
+                    setErrors(data);
+                }
+            })
+            .catch(error => console.log(error));
+    }
 
     return (
+        <>
+        <h2 id="subformHeader">Add Agent</h2>
         <form onSubmit={handleSubmit} className="form-inline mx-2 my-4">
+            <Errors errors={errors} />
             <input
                 type="text"
                 className="form-control col-1"
@@ -83,15 +128,13 @@ export const AddAgentForm = (props) => {
                 Add Agent
             </button>
 
-            <button
-                className="btn btn-warning ml-2"
-                id="cancelButton"
-                type="button"
-                onClick={props.handleUpdateCancel}
-            >
+            <Link to="/agents" id="cancelButton" className="btn btn-warning ml-2">
                 Cancel
-            </button>
+            </Link>
 
         </form>
+        </>
     );
-};
+}
+
+export default AddAgent;
