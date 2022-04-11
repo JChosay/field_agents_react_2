@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // TODO add antMatchers here to configure access to specific API endpoints
                 .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/api/create_account").permitAll()
+                .antMatchers("/api/createAccount").permitAll()
                 .antMatchers(HttpMethod.GET,
                         "/api/agent", "/api/agent/*").permitAll()
                 .antMatchers(HttpMethod.POST,
